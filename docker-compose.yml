@@ -1,0 +1,15 @@
+services:
+  database:
+    image: postgres:18
+    container_name: personal-finance-db
+    environment:
+      POSTGRES_DB: personal_finance_tracker
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:
