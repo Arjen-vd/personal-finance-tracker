@@ -3,6 +3,7 @@ package dev.arjenvd.personal_finance_tracker.application;
 import dev.arjenvd.personal_finance_tracker.data.BankAccountRepository;
 import dev.arjenvd.personal_finance_tracker.domain.BankAccount;
 
+import dev.arjenvd.personal_finance_tracker.presentation.BankAccountRequest;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,11 @@ public class BankAccountService {
     }
 
     @Transactional
-    public BankAccount save(BankAccount bankAccount) {
+    public BankAccount save(BankAccountRequest bankAccountRequest) {
+        BankAccount bankAccount = new BankAccount(bankAccountRequest.name(), bankAccountRequest.balanceInCents());
+
         return bankAccountRepository.save(bankAccount);
+
     }
 
     @Transactional(readOnly = true)

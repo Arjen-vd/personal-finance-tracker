@@ -18,6 +18,14 @@ public class BankAccount {
     @Column(name = "balance_in_cents", nullable = false)
     private long balanceInCents;
 
+    public BankAccount(String name, long initialBalanceInCents) {
+        validateAmount(initialBalanceInCents);
+
+        this.name = name;
+        this.balanceInCents = initialBalanceInCents;
+
+    }
+
     public BankAccount() {
 
     }
@@ -39,13 +47,13 @@ public class BankAccount {
     }
 
     public void deposit(long amountInCents) {
-        validateBalance(amountInCents);
+        validateAmount(amountInCents);
 
         this.balanceInCents += amountInCents;
     }
 
     public void withdraw(long amountInCents) {
-        validateBalance(amountInCents);
+        validateAmount(amountInCents);
 
         if (this.balanceInCents - amountInCents < 0) {
             throw new IllegalStateException(
@@ -61,7 +69,7 @@ public class BankAccount {
      * @param amountInCents amount in cents
      * @throws IllegalArgumentException if amount is negative
      */
-    private void validateBalance(long amountInCents) {
+    private void validateAmount(long amountInCents) {
         if (amountInCents <= 0) {
             throw new IllegalArgumentException(
                     "Amount must be positive"

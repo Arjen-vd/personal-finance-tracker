@@ -1,5 +1,40 @@
+
+@baseUrl = http://localhost:8080
+@bankAccountId = 4e98c119-728a-4476-a1ba-0d8c2b21fb66
+
 ### Get all bank accounts
-GET http://localhost:8080/api/bankaccount
+GET {{baseUrl}}/api/bankaccount
 Accept: application/json
 
 ###
+
+### Get bank account by ID
+GET {{baseUrl}}/api/bankaccount/{{bankAccountId}}
+Accept: application/json
+
+###
+
+### Create bank account
+POST {{baseUrl}}/api/bankaccount
+Content-Type: application/json
+
+{
+  "name": "ING Betaalrekening",
+  "balanceInCents": 10000
+}
+
+###
+
+### Update bank account
+PUT {{baseUrl}}/api/bankaccount/{{bankAccountId}}
+Content-Type: application/json
+
+{
+  "name": "Nieuwe rekeningnaam",
+  "balanceInCents": 100
+}
+
+###
+
+### Delete bank account
+DELETE {{baseUrl}}/api/bankaccount/{{bankAccountId}}
