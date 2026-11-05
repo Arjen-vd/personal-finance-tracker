@@ -1,0 +1,5 @@
+### Get all bank accounts
+GET http://localhost:8080/api/bankaccount
+Accept: application/json
+
+###
