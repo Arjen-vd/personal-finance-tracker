@@ -1,6 +1,6 @@
 
 @baseUrl = http://localhost:8080
-@bankAccountId = 4e98c119-728a-4476-a1ba-0d8c2b21fb66
+@bankAccountId = a6c44936-88bd-472a-af34-d0864bb141b7
 
 ### Get all bank accounts
 GET {{baseUrl}}/api/bankaccount

@@ -20,10 +20,8 @@ public class BankAccount {
 
     public BankAccount(String name, long initialBalanceInCents) {
         validateAmount(initialBalanceInCents);
-
         this.name = name;
         this.balanceInCents = initialBalanceInCents;
-
     }
 
     public BankAccount() {
@@ -44,6 +42,10 @@ public class BankAccount {
 
     public long getBalanceInCents() {
         return balanceInCents;
+    }
+
+    public void setBalanceInCents(long amountInCents) {
+        this.balanceInCents = amountInCents;
     }
 
     public void deposit(long amountInCents) {

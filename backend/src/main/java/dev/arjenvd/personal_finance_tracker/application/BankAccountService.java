@@ -40,11 +40,12 @@ public class BankAccountService {
     }
 
     @Transactional
-    public BankAccount update(UUID id, BankAccount updatedBankAccount) {
+    public BankAccount update(UUID id, BankAccountRequest updatedBankAccount) {
         BankAccount bankAccount = bankAccountRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Bank account not found"));
 
-        bankAccount.setName(updatedBankAccount.getName());
+        bankAccount.setName(updatedBankAccount.name());
+        bankAccount.setBalanceInCents(updatedBankAccount.balanceInCents());
 
         return bankAccount;
     }

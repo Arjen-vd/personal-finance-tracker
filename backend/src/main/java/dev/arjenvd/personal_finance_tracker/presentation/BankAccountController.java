@@ -2,6 +2,7 @@ package dev.arjenvd.personal_finance_tracker.presentation;
 
 import dev.arjenvd.personal_finance_tracker.application.BankAccountService;
 import dev.arjenvd.personal_finance_tracker.domain.BankAccount;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,16 @@ public class BankAccountController {
                         new ResponseStatusException(HttpStatus.NOT_FOUND)
                 );
         return toBankAccountResponse(bankAccount);
+    }
+
+    @PutMapping("/{id}")
+    public BankAccountResponse update(@PathVariable UUID id, @Valid @RequestBody BankAccountRequest request) {
+        try {
+            BankAccount bankAccount = bankAccountService.update(id, request);
+            return toBankAccountResponse(bankAccount);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("{id}")
